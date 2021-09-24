@@ -1,19 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ResultInputForm />
+    <ResultList :items="resultList" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ResultList from "./components/ResultList.vue";
+import ResultInputForm from "./components/ResultInputForm.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    ResultList,
+    ResultInputForm,
+  },
+
+  data() {
+    return {
+      resultList: [
+        {
+          distance: 1000,
+          speedOneKmPerMinute: 5.05,
+        },
+        {
+          distance: 1000,
+          speedOneKmPerMinute: 5.37,
+        },
+        {
+          distance: 1000,
+          speedOneKmPerMinute: 6.14,
+        },
+        {
+          distance: 1000,
+          speedOneKmPerMinute: 6.1,
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style>

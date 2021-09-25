@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <ResultInputForm />
+    <header :class="[$style.header]">Run Speed Convertor</header>
+    <AddNewRecordButton @clicked="isDisplay = !isDisplay" />
+    <ResultInputForm @add="recordNewData" v-if="isDisplay" />
     <ResultList :items="resultList" />
   </div>
 </template>
@@ -8,40 +10,32 @@
 <script>
 import ResultList from "./components/ResultList.vue";
 import ResultInputForm from "./components/ResultInputForm.vue";
+import AddNewRecordButton from "./components/AddNewRecordButton.vue";
 
 export default {
   name: "App",
   components: {
     ResultList,
     ResultInputForm,
+    AddNewRecordButton,
   },
 
   data() {
     return {
-      resultList: [
-        {
-          distance: 1000,
-          speedOneKmPerMinute: 5.05,
-        },
-        {
-          distance: 1000,
-          speedOneKmPerMinute: 5.37,
-        },
-        {
-          distance: 1000,
-          speedOneKmPerMinute: 6.14,
-        },
-        {
-          distance: 1000,
-          speedOneKmPerMinute: 6.1,
-        },
-      ],
+      isDisplay: false,
+      resultList: [],
     };
+  },
+
+  methods: {
+    recordNewData(data) {
+      this.resultList.push(data);
+    },
   },
 };
 </script>
 
-<style>
+<style module>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,5 +43,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.header {
+  color: red;
 }
 </style>

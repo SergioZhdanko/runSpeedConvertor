@@ -39,18 +39,6 @@ export default {
   },
 };
 </script>
-/*
-let min = parseInt(dataAllRounds[j].time);
-let sec = dataAllRounds[j].time - min;
-			
-min *= 60;
-sec *= 100;
-			
-let allTime = (min + sec) / 3600;
-let dist = dataAllRounds[j].distance / 1000;
-			
-dataSpeed.push((dist / allTime).toFixed(2));
-*/
 
 <style>
 table {

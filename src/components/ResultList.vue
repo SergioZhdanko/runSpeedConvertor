@@ -46,18 +46,14 @@ export default {
   computed: {
     sumOfDistance() {
       const { items } = this;
-      console.log(items);
-      let sumDist = 0;
-      for (let i = 0; i < items.length; i++) {
-        sumDist = sumDist + items.distance;
-        console.log(sumDist);
-      }
-      return sumDist;
+
+      return items.reduce((sum, cur) => sum + cur.distance, 0);
     },
   },
 };
 </script>
-
+// paymentsList
+//         .reduce((res, cur) => res + cur.price, 0)
 <style>
 table {
   /*border: 1px solid grey;*/

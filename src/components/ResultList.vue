@@ -15,6 +15,12 @@
       <td>{{ item.speedOneKmPerMinute }}</td>
       <td>{{ convertToKmHour(item.distance, item.speedOneKmPerMinute) }}</td>
     </tr>
+    <tr>
+      <td>Summary trainig data</td>
+      <td>{{ sumOfDistance }}</td>
+      <!-- <td>{{ sumOfTime }}</td>
+      <td>{{ calculateAvgSpeed }}</td> -->
+    </tr>
   </table>
 </template>
 
@@ -35,6 +41,18 @@ export default {
       let allTime = (min + sec) / 3600;
       let distKm = dist / 1000;
       return (distKm / allTime).toFixed(2);
+    },
+  },
+  computed: {
+    sumOfDistance() {
+      const { items } = this;
+      console.log(items);
+      let sumDist = 0;
+      for (let i = 0; i < items.length; i++) {
+        sumDist = sumDist + items.distance;
+        console.log(sumDist);
+      }
+      return sumDist;
     },
   },
 };

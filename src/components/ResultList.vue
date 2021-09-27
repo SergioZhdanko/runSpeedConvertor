@@ -18,8 +18,8 @@
     <tr>
       <td>Summary trainig data</td>
       <td>{{ sumOfDistance }}</td>
-      <!-- <td>{{ sumOfTime }}</td>
-      <td>{{ calculateAvgSpeed }}</td> -->
+      <td>{{ sumOfTime }}</td>
+      <td>{{ convertToKmHour(sumOfDistance, sumOfTime) }}</td>
     </tr>
   </table>
 </template>
@@ -49,11 +49,20 @@ export default {
 
       return items.reduce((sum, cur) => sum + cur.distance, 0);
     },
+    sumOfTime() {
+      const { items } = this;
+      let allMin = items.map((item) => parseInt(item.speedOneKmPerMinute));
+      let allSec = items.map((item) => (item.speedOneKmPerMinute * 100) % 100);
+      let sumOfMin = allMin.reduce((sum, cur) => sum + cur, 0);
+      let sumOfSec = allSec.reduce((sum, cur) => sum + cur, 0);
+      sumOfMin = sumOfMin + (sumOfSec - (sumOfSec % 60)) / 60;
+      sumOfSec = sumOfSec % 60;
+      return sumOfMin + sumOfSec / 100;
+    },
   },
 };
 </script>
-// paymentsList
-//         .reduce((res, cur) => res + cur.price, 0)
+
 <style>
 table {
   /*border: 1px solid grey;*/

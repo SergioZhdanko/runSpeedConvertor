@@ -9,22 +9,25 @@
     </tr>
 
     <!-- Элемент <td> создаёт ячейки таблицы, внутрь которых помещаются данные таблицы.  -->
-    <tr v-for="(item, index) in items" :key="index">
+    <tr v-for="(item, index) in getResultList" :key="index">
       <td>{{ index + 1 }}</td>
       <td>{{ item.distance }}</td>
       <td>{{ item.speedOneKmPerMinute }}</td>
       <td>{{ convertToKmHour(item.distance, item.speedOneKmPerMinute) }}</td>
     </tr>
+    <tr>
+      <td>Summary trainig data</td>
+      <td>{{ getSumOfDistance }}</td>
+      <td>{{ getSumOfTime }}</td>
+      <td>{{ convertToKmHour(getSumOfDistance, getSumOfTime) }}</td>
+    </tr>
   </table>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  props: {
-    items: {
-      type: Array,
-    },
-  },
+  props: {},
 
   methods: {
     convertToKmHour(dist, time) {
@@ -36,6 +39,9 @@ export default {
       let distKm = dist / 1000;
       return (distKm / allTime).toFixed(2);
     },
+  },
+  computed: {
+    ...mapGetters(["getResultList", "getSumOfDistance", "getSumOfTime"]),
   },
 };
 </script>

@@ -15,25 +15,28 @@
 </template>
 
 <script>
-export default {
-  props: {
-    items: {
-      type: Array,
-    },
-  },
+import { mapMutations, mapState } from "vuex";
 
+export default {
+  props: {},
   data() {
-    return {
-      distance: "",
-      speedOneKmPerMinute: "",
-    };
+    return {};
   },
 
   methods: {
+    ...mapMutations(["setResultListData"]),
     save() {
       const { distance, speedOneKmPerMinute } = this;
-      this.$emit("add", { distance, speedOneKmPerMinute });
+      this.setResultListData([
+        ...this.resultList,
+        { distance, speedOneKmPerMinute },
+      ]);
     },
+  },
+  computed: {
+    ...mapState({
+      resultList: (state) => state.resultList,
+    }),
   },
 };
 </script>

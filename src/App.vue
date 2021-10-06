@@ -2,7 +2,7 @@
   <div id="app">
     <header :class="[$style.header]">Run Speed Convertor</header>
     <AddNewRecordButton @clicked="isDisplay = !isDisplay" />
-    <ResultInputForm @add="recordNewData" v-if="isDisplay" />
+    <ResultInputForm v-if="isDisplay" />
     <ResultList />
   </div>
 </template>
@@ -23,14 +23,7 @@ export default {
   data() {
     return {
       isDisplay: false,
-      // resultList: [],
     };
-  },
-
-  methods: {
-    recordNewData(data) {
-      this.resultList.push(data);
-    },
   },
 };
 </script>

@@ -18,6 +18,10 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    //this.$router.push({ name: "about" }); // теперь после перезагрузки страницы всегда будет открываться страница about
+    console.log(this.$router);
+  },
 };
 </script>
 

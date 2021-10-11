@@ -16,12 +16,12 @@ export default new Router({
             component: PageDashBoard
         },
         {
-            path: '/about',
+            path: '/about*', //* добавление * после about это шаблонный путь, чтобы теперь не писали в адресе после about будем попадат ьна about
             name: 'about',
             component: PageAbout
         },
         {
-            path: '/404',
+            path: '*', //позволяет отображать страницу 404 если в адресе набрана несуществующая билибирда
             name: 'not found',
             component: Page404
         },

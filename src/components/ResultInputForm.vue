@@ -10,7 +10,13 @@
       placeholder="Enter minutes and seconds for kilometer"
       v-model.number="speedOneKmPerMinute"
     />
-    <button class="show-btn" @click="save">Add record</button>
+    <button
+      class="show-btn"
+      :disabled="!distance || !speedOneKmPerMinute"
+      @click="save"
+    >
+      Add record
+    </button>
   </div>
 </template>
 
@@ -26,13 +32,16 @@ export default {
     return {
       distance: "",
       speedOneKmPerMinute: "",
+      uniqueId: "",
     };
   },
 
   methods: {
     save() {
+      this.uniqueId = Math.random();
+      const id = this.uniqueId;
       const { distance, speedOneKmPerMinute } = this;
-      this.$emit("add", { distance, speedOneKmPerMinute });
+      this.$emit("add", { distance, speedOneKmPerMinute, id });
     },
   },
 };
@@ -65,11 +74,19 @@ export default {
   -webkit-transition: background-color 1s;
   transition: background-color 1s;
   border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
 }
 
+.show-btn:active,
 .show-btn:hover {
   background-color: #f1f4f7;
   color: #10945d;
   border: solid 1px #f1f4f7;
+  transition: none;
+}
+.show-btn:disabled {
+  background: #10945d;
+  cursor: default;
+  color: #f1f4f7;
 }
 </style>

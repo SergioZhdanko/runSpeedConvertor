@@ -3,6 +3,7 @@
     <!-- Элемент <th> создаёт заголовок столбца — специальную ячейку, текст в которой выделяется полужирным.  -->
     <tr>
       <th>#</th>
+      <th>ID</th>
       <th>Distance</th>
       <th>Minutes for distance</th>
       <th>Speed Km/h</th>
@@ -10,14 +11,16 @@
     </tr>
 
     <!-- Элемент <td> создаёт ячейки таблицы, внутрь которых помещаются данные таблицы.  -->
-    <tr v-for="(item, index) in items" :key="index">
-      <td @dblclick="dblclicked(index)">{{ index + 1 }}</td>
+    <tr v-for="(item, index) in items" :key="item.id">
+      <td>{{ index + 1 }}</td>
+      <td @dblclick="dblclicked(item.id)">{{ item.id }}</td>
       <td>{{ item.distance }}</td>
       <td>{{ item.speedOneKmPerMinute }}</td>
       <td>{{ convertToKmHour(item.distance, item.speedOneKmPerMinute) }}</td>
     </tr>
     <tr>
       <td>Summary trainig data</td>
+      <td>*****</td>
       <td>{{ sumOfDistance }}</td>
       <td>{{ sumOfTime }}</td>
       <td>{{ convertToKmHour(sumOfDistance, sumOfTime) }}</td>
@@ -61,11 +64,11 @@ export default {
         return `${avgMin}.0${avgSec}`;
       }
     },
-    dblclicked(index) {
+    dblclicked(id) {
       // this.resultList.splice(i, 1);
       // console.log(this.resultList);
       // const { index } = this;
-      this.$emit("dblclicked", index);
+      this.$emit("dblclicked", id);
     },
   },
   computed: {

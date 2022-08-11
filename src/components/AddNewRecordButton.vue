@@ -34,11 +34,13 @@ export default {
   -webkit-transition: background-color 1s;
   transition: background-color 1s;
   border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
 }
 
 .show-btn:hover {
   background-color: #f1f4f7;
   color: #10945d;
   border: solid 1px #f1f4f7;
+  transition: none;
 }
 </style>
